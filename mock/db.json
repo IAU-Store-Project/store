@@ -1,0 +1,45 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "Computers",
+      "href": "/category/computers"
+    },
+    {
+      "id": 2,
+      "title": "Phones",
+      "href": "/category/phones"
+    },
+    {
+      "id": 3,
+      "title": "TVs",
+      "href": "/category/computers"
+    },
+    {
+      "id": 4,
+      "title": "Others",
+      "href": "/category/all"
+    },
+    {
+      "title": "PS 9",
+      "href": "/category/ps",
+      "id": 5
+    }
+  ],
+
+  "products": [
+    {"id": 1, "title": "Product 1", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=1"},
+    {"id": 2, "title": "Product 2", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=2"},
+    {"id": 3, "title": "Product 3", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=3"},
+    {"id": 4, "title": "Product 4", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=4"},
+    {"id": 5, "title": "Product 5", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=4"},
+    {"id": 6, "title": "Product 6", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=3"},
+    {"id": 7, "title": "Product 7", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=2"},
+    {"id": 8, "title": "Product 8", "price":"9.99", "currency":"$", "description":"Description", "img":"https://picsum.photos/900/555/?random=1"}
+  ],
+
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
