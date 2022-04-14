@@ -11,10 +11,10 @@ UNITS_CHOICES = {
 
 
 class Product(models.Model):
-    title = models.CharField('Product')
-    price = models.DecimalField("Price", max_length=12, decimal_places=4)
-    stock = models.DecimalField("Stok", max_length=8, decimal_places=4)
-    unit = models.CharField("Unit", choices=UNITS_CHOICES, default=ProductUnits.QTY)
+    title = models.CharField('Product', max_length=160)
+    price = models.DecimalField("Price", max_length=12, max_digits=12, decimal_places=4)
+    stock = models.DecimalField("Stok", max_length=8, max_digits=8, decimal_places=4)
+    unit = models.CharField("Unit", choices=UNITS_CHOICES, default=ProductUnits.QTY, max_length=5)
 
     def __str__(self):
         return "{0} - {1} - {2}".format(self.title, self.price, self.stock)
