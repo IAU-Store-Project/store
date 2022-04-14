@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Liste</h3>
+        </div>
+        <div class="card-body p-0">
+
+            <table class="table table-striped">
+                <thead>
+
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Ad</th>
+                    <th>Slug</th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+                {% for category in categories %}
+
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.slug }}</td>
+                    </tr>
+
+                {% empty %}
+                    <p>Kategori bulunmuyor</p>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
