@@ -6,5 +6,5 @@ from api.category.resources import (
 
 urlpatterns = [
     path('', CategoryListCreateAPIView.as_view(), name='category-api-list'),
-    path('/<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-api-crud'),
+    path('<int:pk>/', CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-api-crud'),
 ]
