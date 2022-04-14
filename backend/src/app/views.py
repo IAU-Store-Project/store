@@ -1,5 +1,47 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+from django.contrib import messages
+
+User = get_user_model()
 
 
+@login_required
 def home(request):
-    return render(request, 'home.html', {})
+    context = {"title": "Anasayfa"}
+    return render(request, 'home.html', context=context)
+
+
+def signin(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            messages.error(request, "Kullanıcı adı veya şifre hatalı!")
+            return redirect('signin')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, "Kullanıcı aktif değil!")
+                return redirect('signin')
+        else:
+            messages.error(request, "Kullanıcı adı veya şifre hatalı!")
+            return redirect('signin')
+
+    context = {"title": "signin"}
+    print("post", request.POST)
+    return render(request, 'signin.html', context=context)
+
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('signin')

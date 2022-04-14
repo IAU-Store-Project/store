@@ -1,0 +1,38 @@
+{% extends 'base_account.html' %}
+
+{% block content %}
+    {% include 'messages.html' %}
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg"></p>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adı">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Şifre">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Giriş</button>
+                    </div>
+                </div>
+            </form>
+            <div class="clearfix">&nbsp;</div>
+            <p class="mb-0 text-center">
+                <a href="#" class="text-center">Üye Ol</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
