@@ -14,5 +14,3 @@ class BasketProduct(models.Model):
     basket = models.ForeignKey(Basket)
     product = models.ForeignKey(Product)
     qty = models.CharField()
-
-
