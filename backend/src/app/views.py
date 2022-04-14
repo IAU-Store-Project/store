@@ -45,3 +45,14 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('signin')
+
+
+from django.views import View
+from django.http import HttpResponse
+
+class AboutView(View):
+    greeting = "Selam"
+
+    def get(self, request):
+        return HttpResponse(self.greeting)
+
