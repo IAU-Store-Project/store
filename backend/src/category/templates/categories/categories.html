@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'categories/category_menu.html' %}
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">List</h3>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th>Status</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'category-detail' category.id %}">
+                                {{ category.id }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'category-detail' category.id %}">
+                                {{ category.name }}
+                            </a>
+                        </td>
+                        <td>{{ category.slug }}</td>
+                        <td>
+                            <a href="{% url 'category-status' category.id 'list' %}">
+                                {% if category.is_active %}
+                                    <span class="btn btn-xs btn-success">Active</span>
+                                {% else %}
+                                    <span class="btn btn-xs btn-danger">Passive</span>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'category-detail' category.id %}" class="btn btn-xs btn-default" title="Detail">
+                                <i class="fa fa-eye"></i>
+                            </a>&nbsp;
+                            <a href="{% url 'category-edit' category.id %}" class="btn btn-xs btn-default" title="Edit">
+                                <i class="fa fa-edit"></i>
+                            </a>&nbsp;
+                            <a href="{% url 'category-delete' category.id %}" class="btn btn-xs btn-default" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </a>&nbsp;
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <p class="text-bold p-2">Category not found</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

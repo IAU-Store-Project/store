@@ -1,0 +1,29 @@
+<div class="btn-group">
+    <a href="{% url 'categories' %}" class="btn btn-default">
+        <i class="fas fa-list"></i>&nbsp;List
+    </a>
+    {% if category.id %}
+        <a href="{% url 'category-detail' category.id %}" class="btn btn-default">
+            <i class="fas fa-?"></i>&nbsp;Refresh
+        </a>
+        <a href="{% url 'category-edit' category.id %}" class="btn btn-default">
+            <i class="fas fa-edit"></i>&nbsp;Edit
+        </a>
+        <a href="{% url 'category-delete' category.id %}" class="btn btn-default">
+            <i class="fas fa-ban"></i>&nbsp;Delete
+        </a>
+        {% if category.is_active %}
+            <a href="{% url 'category-status' category.id 'detail' %}" class="btn btn-danger">
+                <i class="fas fa-lock"></i>&nbsp;Passive
+            </a>
+        {% else %}
+            <a href="{% url 'category-status' category.id 'detail' %}" class="btn btn-success">
+                Active
+            </a>
+        {% endif %}
+    {% else %}
+        <a href="{% url 'category-create' %}" class="btn btn-default">
+            <i class="fas fa-plus-circle"></i>&nbsp;Create
+        </a>
+    {% endif %}
+</div>

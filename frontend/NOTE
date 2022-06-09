@@ -1,0 +1,35 @@
+
+// https://www.robinwieruch.de/react-router-authentication/
+//   const { token, signIn, signOut } = useAuth();
+
+
+headers.append("Content-Type", "application/json");
+
+// headers.append("Token", "");
+
+https://getbootstrap.com/docs/5.1/components/spinners/
+https://ui.dev/react-router-server-rendering
+https://reactrouter.com/docs/en/v6/getting-started/tutorial
+https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually
+https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually
+https://tr.reactjs.org/docs/forms.html
+
+
+https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04
+https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-22-04
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-react-application-with-nginx-on-ubuntu-20-04
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04
+
+
+
+https://testdriven.io/blog/django-digitalocean-app-platform/
+
+https://levelup.gitconnected.com/how-to-deploy-a-django-web-app-on-digitalocean-ubuntu-20-04-server-a3c082d5294d
+https://medium.com/devopsturkiye/react-axios-ile-web-request-47c61815a494
+https://saasitive.com/tutorial/docker-compose-django-react-nginx-let-s-encrypt/
+
+
+
+ls -l <YOUR_PROJECT_FOLDER>

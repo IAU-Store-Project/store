@@ -1,12 +1,10 @@
 import React from "react";
 
-import GeneralLayout from "./../Layouts/GeneralLayout";
 import UserMenu from "./../Components/Account/UserMenu";
 
 const ProfilePage = () => {
   return (
     <React.Fragment>
-      <GeneralLayout>
         <div className="container mt-5 mb-5">
           {/* <div className="row">
             <div className="col">
@@ -26,7 +24,6 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-      </GeneralLayout>
     </React.Fragment>
   );
 };
