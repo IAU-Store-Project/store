@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 					signal: controller.signal,
 				});
 				setToken(response.data.access);
-				localStorage.setItem("username", obj.username);
+				localStorage.setItem("username", obj.email);
 				getMe(response.data.access);
 				navigate(origin);
 			} catch (err) {
