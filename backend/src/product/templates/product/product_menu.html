@@ -1,0 +1,29 @@
+<div class="btn-group">
+
+    {% if product_id %}
+        <a href="{% url 'product-detail' product_id %}" class="btn btn-default">
+            <i class="fas fa-?"></i>&nbsp;Refresh
+        </a>
+    {% endif %}
+
+    {% if product_id %}
+        <a href="{% url 'product-edit' product_id %}" class="btn btn-default">
+            <i class="fas fa-edit"></i>&nbsp;Edit
+        </a>
+    {% endif %}
+
+    {% if product_id %}
+        <a href="{% url 'product-delete' product_id %}" class="btn btn-default">
+            <i class="fas fa-ban"></i>&nbsp;Delete
+        </a>
+    {% endif %}
+
+    <a href="{% url 'product-list' %}" class="btn btn-default">
+        <i class="fas fa-list"></i>&nbsp;List
+    </a>
+
+    <a href="{% url 'product-create' %}" class="btn btn-default">
+        <i class="fas fa-plus-circle"></i>&nbsp;Create
+    </a>
+
+</div>

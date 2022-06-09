@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'product/product_menu.html' with product_id=product.pk %}
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Detail</h3>
+        </div>
+       <div class="card-body p-0">
+            <table class="table table-striped">
+                <tr>
+                    <th style="min-width: 200px;">ID</th>
+                    <td>{{ product.pk }}</td>
+                </tr>
+                <tr>
+                    <th>Brand</th>
+                    <td>{{ product.title }}</td>
+                </tr>
+                <tr>
+                    <th>Stock</th>
+                    <td>{{ product.stock }}</td>
+                </tr>
+                <tr>
+                    <th>Unit</th>
+                    <td>{{ product.unit }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ default_currency }}&nbsp;{{ product.price }}</td>
+                </tr>
+                <tr>
+                    <th>Cover Image</th>
+                    <td><img src="{{ product.img.url }}"
+                             alt="{{ product.title }}"
+                             style="max-width: 30%;"
+                             class="img-fluid" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+{#    <div class="btn-group">#}
+{#        {% if product.pk %}#}
+{#            <a href="{% url 'product-detail' product.pk %}" class="btn btn-default">#}
+{#                <i class="fas fa-upload"></i>&nbsp;Upload Picture#}
+{#            </a>#}
+{#        {% endif %}#}
+{#    </div>#}
+
+    {#    <div class="clearfix">&nbsp;</div>#}
+    {#    <div class="card">#}
+    {#        <div class="card-header">#}
+    {#            <h3 class="card-title">Product Images</h3>#}
+    {#        </div>#}
+    {#       <div class="card-body p-0">#}
+    {#            <table class="table table-striped">#}
+    {#           <tr><td></td></tr>#}
+    {#            </table>#}
+    {#        </div>#}
+    {#    </div>#}
+
+{% endblock %}

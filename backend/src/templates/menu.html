@@ -1,0 +1,84 @@
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+    data-accordion="false">
+
+    <li class="nav-item">
+        <a href="{% url 'home' %}" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Dashboard
+            </p>
+        </a>
+    </li>
+
+    <li class="nav-item {% if 'product' in request.path %}menu-open{% endif %}">
+        <a href="{% url 'home' %}" class="nav-link">
+            <i class="nav-icon fas fa-cubes"></i>
+            <p>
+                Products
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{% url 'product-list' %}" class="nav-link {% if '/product/' == request.path %}active{% endif %}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Products</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'brand-list' %}" class="nav-link {% if 'product/brand' in request.path %}active{% endif %}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Brands</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'categories' %}" class="nav-link {% if 'product/categories' in request.path %}active{% endif %}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Categories</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-item {% if '/customers' in request.path %}menu-open{% endif %}">
+        <a href="{% url 'customers' %}" class="nav-link {% if '/customers' in request.path %}active{% endif %}">
+            <i class="nav-icon fas fa-users"></i>
+            <p>Customers</p>
+        </a>
+    </li>
+
+    <li class="nav-item {% if '/orders' in request.path %}menu-open{% endif %}">
+        <a href="{% url 'customers' %}" class="nav-link {% if '/orders' in request.path %}active{% endif %}">
+            <i class="nav-icon fas fa-shopping-basket"></i>
+            <p>Orders</p>
+        </a>
+    </li>
+
+
+{#    <li class="nav-item">#}
+{#        <a href="#" class="nav-link">#}
+{#            <i class="nav-icon fas fa-th"></i>#}
+{#            <p>#}
+{#                Simple Link#}
+{#                <span class="right badge badge-danger">New</span>#}
+{#            </p>#}
+{#        </a>#}
+{#    </li>#}
+
+
+    <li class="nav-item">
+        <a href="{% url 'signout' %}" class="nav-link">
+            <i class="nav-icon fas fa-ban"></i>
+            <p>Çıkış</p>
+        </a>
+    </li>
+
+{#    <li class="nav-header">&nbsp;</li>#}
+{##}
+{#    <li class="nav-item">#}
+{#        <a href="#" class="btn btn-primary btn-block">#}
+{#            Ayarlar#}
+{#        </a>#}
+{#    </li>#}
+
+</ul>

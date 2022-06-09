@@ -1,34 +1,31 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import GeneralLayout from "../Layouts/GeneralLayout";
+import API from "../api";
 import ProductDetail from "../Components/Product/ProductDetail";
 
-
 const ProductPage = () => {
-  const [product, setProduct] = useState(false);
-  const  params = useParams();
+	const [product, setProduct] = useState(false);
+	const params = useParams();
 
-  useEffect(() => {
-    var requestOptions = {method: "GET"};
-    let url = `http://localhost:9000/products/${params.pid}`;
-    fetch(url, requestOptions)
-      .then((response) => response.text())
-      .then((result) => setProduct(JSON.parse(result)))
-      .catch((error) => console.log("error", error));
-  }, [params]);
+	useEffect(() => {
+		API.get(`products/${params.pid}`)
+				.then(response => {
+					if (response.status !== 200) return;
+					const product = response.data;
+					setProduct(product);
+				});
+	}, [params]);
 
-  if (!product) {
-    return (<React.Fragment></React.Fragment>);
-  }
+	if (!product) {
+		return (<React.Fragment></React.Fragment>);
+	}
 
-  return (
-    <React.Fragment>
-      <GeneralLayout>
-        <ProductDetail product={product} />
-      </GeneralLayout>
-    </React.Fragment>
-  );
+	return (
+			<React.Fragment>
+				<ProductDetail product={product}/>
+			</React.Fragment>
+	);
 };
 
 export default ProductPage;

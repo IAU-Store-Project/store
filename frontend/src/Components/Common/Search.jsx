@@ -3,9 +3,9 @@ import React from "react";
 const Search = () => {
   return (
     <React.Fragment>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-6 offset-3">
+          <div className="col-lg-6 col-md-8 col-sm-10 col-xs-10 offset-lg-3 offset-md-2 offset-sm-1 offset-xs-1">
             <div className="input-group mb-5 mt-5 p3">
               <input
                 type="text"

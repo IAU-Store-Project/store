@@ -1,0 +1,582 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/auth/me:
+    get:
+      operationId: listUsers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - api
+  /api/brands/:
+    get:
+      operationId: listBrands
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Brand'
+          description: ''
+      tags:
+      - api
+  /api/brands/{id}/:
+    get:
+      operationId: retrieveBrand
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Brand.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+      tags:
+      - api
+  /api/categories/:
+    get:
+      operationId: listCategorys
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+  /api/categories/{id}/:
+    get:
+      operationId: retrieveCategory
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Category.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+      tags:
+      - api
+  /api/products/:
+    get:
+      operationId: listProducts
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+  /api/products/{id}/:
+    get:
+      operationId: retrieveProduct
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+  /api/addresses/:
+    get:
+      operationId: listAddress
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createAddress
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Address'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Address'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+      tags:
+      - api
+  /api/addresses/{id}:
+    get:
+      operationId: retrieveAddress
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateAddress
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Address'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Address'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateAddress
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Address'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Address'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyAddress
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/auth/register:
+    post:
+      operationId: createUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+      tags:
+      - api
+  /api/auth/auth:
+    post:
+      operationId: createAuthToken
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 80
+        is_active:
+          type: boolean
+      required:
+      - name
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        slug:
+          type: string
+          maxLength: 150
+        is_active:
+          type: boolean
+      required:
+      - name
+      - slug
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+        title:
+          type: string
+          maxLength: 160
+        sku:
+          type: string
+          maxLength: 12
+        price:
+          type: string
+          format: decimal
+          multipleOf: 0.0001
+          maximum: 100000000
+          minimum: -100000000
+        stock:
+          type: string
+          format: decimal
+          multipleOf: 0.0001
+          maximum: 10000
+          minimum: -10000
+        unit:
+          enum:
+          - QTY
+          - KG
+          - ITEM
+          type: string
+        img:
+          type: string
+          format: binary
+        brand:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            created:
+              type: string
+              format: date-time
+              readOnly: true
+            updated:
+              type: string
+              format: date-time
+              readOnly: true
+            name:
+              type: string
+              maxLength: 80
+            is_active:
+              type: boolean
+          required:
+          - name
+          readOnly: true
+      required:
+      - title
+      - sku
+      - price
+      - stock
+      - img
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        customer:
+          type: object
+          properties:
+            pk:
+              type: integer
+              readOnly: true
+            email:
+              type: string
+              format: email
+              maxLength: 254
+            first_name:
+              type: string
+              nullable: true
+              maxLength: 100
+            last_name:
+              type: string
+              nullable: true
+              maxLength: 100
+            is_active:
+              type: boolean
+          required:
+          - email
+        title:
+          type: string
+          maxLength: 50
+      required:
+      - customer
+      - title
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+        password2:
+          type: string
+          writeOnly: true
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+      required:
+      - email
+      - password
+      - password2
+      - first_name
+      - last_name
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - username
+      - password
