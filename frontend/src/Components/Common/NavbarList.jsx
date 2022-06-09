@@ -1,6 +1,23 @@
 import { Link } from "react-router-dom";
 
-import { NAVBAR_LINKS } from "./../../Services/Mock";
+const NAVBAR_LINKS = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Account",
+    href: "/user",
+  },
+  {
+    title: "Orders",
+    href: "/orders",
+  },
+  {
+    title: "Help",
+    href: "/",
+  },
+];
 
 const NavbarList = () => {
   return (

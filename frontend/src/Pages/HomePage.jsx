@@ -1,16 +1,16 @@
-import GeneralLayout from "./../Layouts/GeneralLayout";
+import React from "react";
 import Search from "./../Components/Common/Search";
 import Heros from "./../Components/Common/Heros";
 import ListProducts from "./../Components/List/ListProducts";
 
 const HomePage = () => {
-  return (
-    <GeneralLayout>
-      <Search />
-      <Heros />
-      <ListProducts />
-    </GeneralLayout>
-  );
+	return (
+			<React.Fragment>
+				<Search/>
+				<Heros/>
+				<ListProducts/>
+			</React.Fragment>
+	);
 };
 
 export default HomePage;

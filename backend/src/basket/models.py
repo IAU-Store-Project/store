@@ -6,11 +6,11 @@ User = get_user_model()
 
 
 class Basket(models.Model):
-    customer = models.OneToOneField(User)
-    total = models.CharField()
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='basket')
+    total = models.CharField(max_length=22)
 
 
-class BasketProduct(models.Model):
-    basket = models.ForeignKey(Basket)
-    product = models.ForeignKey(Product)
-    qty = models.CharField()
+# class BasketProduct(models.Model):
+#     basket = models.ForeignKey(Basket)
+#     product = models.ForeignKey(Product)
+#     qty = models.CharField()

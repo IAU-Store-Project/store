@@ -1,0 +1,62 @@
+
+
+Tez:
+
+  Stacks:
+
+    Frontend:
+      HTML5
+      CSS3
+      Bootstrap
+      JSON
+      ReactJs
+      Ecmascript 6
+      BabelJs
+    Backend:
+      Python
+      Django
+      JSON
+      Rest API
+      GraphQL API
+      ORM
+      Websocket
+    DevOps:
+      PostgreSql
+      Redis
+      Elasticsearch
+      Sentry
+      Nginx
+      Git
+      Jira
+      Docker
+
+  Architect:
+    MVT
+  Integration:
+    3rd Party Integration / Stripe
+    Telegram / Sipariş Düşürme
+
+  Applications:
+
+    Backoffice:
+
+    Store:
+
+    API:
+      - Rest API
+      - GraphQL API
+
+
+
+
+  , , , , , , Docker, , , , , , , , , , , , , , , 
+   container ile çalışan Nginx proxy web server üzerinde Django ile yazılmış platform ve yönetim paneli bulunacaktır. Yinelenen alanlarda Rest API kullanılacaktır. Cache ve oturum için Redis In memory database yapısı kullanılacak, ORM ile birlikte PostgresSQL database kullanılacaktır. Loglar sentry’e aktarılacaktır. Slack ve Telegram gibi 3.parti uygulamaların Rest API servisleri client üzerinden tüketilecektir. Websocket ile birlikte bildirim uygulaması yapılacaktır. Arama bölümü elasticsearch üzerinde çalışacaktır. Arayüzler ReactJs ile kodlanacaktır.
+
+
+
+
+
+KURALLAR:
+  -
+
+

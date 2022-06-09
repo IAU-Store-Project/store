@@ -1,0 +1,28 @@
+<div class="btn-group">
+    <a href="{% url 'brand-list' %}" class="btn btn-default">
+        <i class="fas fa-list"></i>&nbsp;List
+    </a>
+    <a href="{% url 'brand-create' %}" class="btn btn-default">
+        <i class="fas fa-plus-circle"></i>&nbsp;Create
+    </a>
+    {% if brand_id %}
+        <a href="{% url 'brand-detail' brand_id %}" class="btn btn-default">
+            <i class="fas fa-?"></i>&nbsp;Refresh
+        </a>
+        <a href="{% url 'brand-edit' brand_id %}" class="btn btn-default">
+            <i class="fas fa-edit"></i>&nbsp;Edit
+        </a>
+        <a href="{% url 'brand-delete' brand_id %}" class="btn btn-default">
+            <i class="fas fa-ban"></i>&nbsp;Delete
+        </a>
+        {% if brand_active %}
+            <a href="{% url 'brand-status' brand_id 'detail' %}" class="btn btn-danger">
+                <i class="fas fa-lock"></i>&nbsp;Passive
+            </a>
+        {% else %}
+            <a href="{% url 'brand-status' brand_id 'detail' %}" class="btn btn-success">
+                Active
+            </a>
+        {% endif %}
+    {% endif %}
+</div>

@@ -1,0 +1,28 @@
+<div class="btn-group">
+    <a href="{% url 'customers' %}" class="btn btn-default">
+        <i class="fas fa-list"></i>&nbsp;List
+    </a>
+{#    <a href="{% url 'customer-create' %}" class="btn btn-default">#}
+{#        <i class="fas fa-plus-circle"></i>&nbsp;Create#}
+{#    </a>#}
+    {% if customer.pk %}
+        <a href="{% url 'customer-detail' customer.pk %}" class="btn btn-default">
+            <i class="fas fa-sync"></i>&nbsp;Refresh
+        </a>
+{#        <a href="{% url 'customer-edit' customer.pk %}" class="btn btn-default">#}
+{#            <i class="fas fa-edit"></i>&nbsp;Edit#}
+{#        </a>#}
+{#        <a href="{% url 'customer-delete' customer.pk %}" class="btn btn-default">#}
+{#            <i class="fas fa-ban"></i>&nbsp;Delete#}
+{#        </a>#}
+{#        {% if customer_active %}#}
+{#            <a href="{% url 'customer-status' customer.pk 'detail' %}" class="btn btn-danger">#}
+{#                <i class="fas fa-lock"></i>&nbsp;Passive#}
+{#            </a>#}
+{#        {% else %}#}
+{#            <a href="{% url 'customer-status' customer.pk 'detail' %}" class="btn btn-success">#}
+{#                Active#}
+{#            </a>#}
+{#        {% endif %}#}
+    {% endif %}
+</div>

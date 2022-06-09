@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'customer/customer_menu.html' with customer=customer %}
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Detail</h3>
+        </div>
+       <div class="card-body p-0">
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ customer.id }}</td>
+                </tr>
+                <tr>
+                    <th>Fullname</th>
+                    <td>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ customer.email }}</td>
+                </tr>
+                <tr>
+                    <th>Date Joined</th>
+                    <td>{{ customer.date_joined }}</td>
+                </tr>
+                <tr>
+                    <th>Last Login</th>
+                    <td>{{ customer.last_login }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}
