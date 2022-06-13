@@ -15,8 +15,6 @@ User = get_user_model()
 @login_required
 def home(request):
     session_key = request.COOKIES[settings.SESSION_COOKIE_NAME]
-    print("session_key", session_key)
-    print("request.session.session_key", request.session.session_key)
 
     accounts_count = User.objects.filter(
         is_staff=False,
