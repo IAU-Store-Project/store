@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const AddressForm = ({ address, handleSubmit, handleChange }) => {
+const AddressForm = ({
+	address,
+	countries,
+	handleSubmit,
+	handleChange
+}) => {
 	return (
 			<React.Fragment>
 				<form onSubmit={handleSubmit}>
@@ -35,8 +40,14 @@ const AddressForm = ({ address, handleSubmit, handleChange }) => {
 												value={address.country}
 												onChange={handleChange}
 												required={true}>
-									<option></option>
-									<option value="90">Turkey</option>
+									<option key={`cs-0`}></option>
+									{countries && countries?.map(country => (
+											<option
+													key={`cs-${country.id}`}
+													value={`${country.id}`}>
+												{country.name}
+											</option>
+									))}
 								</select>
 							</div>
 						</div>
