@@ -3,7 +3,7 @@ import { useAuth } from "./../../Services/auth";
 import { Link } from "react-router-dom";
 
 const SigninForm = () => {
-	const [user, setUser] = useState({ email: localStorage.getItem("username"), password: "" });
+	const [user, setUser] = useState({ email: localStorage.getItem("username") || "", password: "" });
 	const { signIn } = useAuth();
 
 	const handleChange = e => {
