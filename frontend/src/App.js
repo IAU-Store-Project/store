@@ -21,6 +21,7 @@ import AddressCreateSubPage from "./Pages/AddressCreateSubPage";
 import AddressDeleteSubPage from "./Pages/AddressDeleteSubPage";
 import AddressUpdateSubPage from "./Pages/AddressUpdateSubPage";
 import CartContextProvider from "./Context/Cart";
+import CheckoutPage from "./Pages/CheckoutPage";
 
 function App() {
 	return (
@@ -51,6 +52,9 @@ function App() {
 									<Route path="card" element={<p>card</p>}/>
 									<Route path="*" element={<NoMatch/>}/>
 								</Route>
+
+								<Route path="/checkout" element={<ProtectedRoute><CheckoutPage/></ProtectedRoute>}/>
+
 								<Route path="*" element={<NoMatch/>}/>
 							</Routes>
 						</GeneralLayout>
