@@ -14,6 +14,8 @@ LOGIN_URL = '/app/signin'
 AUTH_USER_MODEL = 'user.User'
 AUTHENTICATION_BACKENDS = ['user.backend.UserBackend', 'django.contrib.auth.backends.ModelBackend']
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
