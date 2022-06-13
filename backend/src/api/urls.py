@@ -11,7 +11,7 @@ urlpatterns = [
     path('brands/', include('brand.api')),
     path('categories/', include('category.api')),
     path('products/', include('product.api')),
-    path('addresses/', include('customer.address.api')),
+    path('addresses/', include('address.api')),
     path('orders/', include('order.api')),
 
     path('checkout/', CheckoutAPIView.as_view()),
