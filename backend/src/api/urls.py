@@ -13,9 +13,7 @@ urlpatterns = [
     path('products/', include('product.api')),
     path('addresses/', include('address.api')),
     path('orders/', include('order.api')),
-
     path('checkout/', CheckoutAPIView.as_view()),
-
     path('openapi', get_schema_view(
         title="IAU Store API",
         description="IAU Store API for E-Commerce Frontend",
