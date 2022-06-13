@@ -1,0 +1,84 @@
+version: "3.8"
+
+services:
+
+  metabase-secrets:
+    image: metabase/metabase:latest
+    container_name: sb-metabase
+    hostname: metabase-secrets
+    ports:
+      - 3000:3000
+    env_file:
+      - .srv
+    networks:
+      - public
+    links:
+      - db
+    tty: true
+
+  db:
+    image: "postgres:latest"
+    container_name: sb-db
+    restart: always
+    ports:
+      - 25060:5432
+    env_file:
+      - .srv
+    networks:
+      - public
+    tty: true
+
+  redis:
+    image: "redis:latest"
+    container_name: sb-redis
+    hostname: redis
+    restart: always
+    ports:
+      - 25061:6379
+    env_file:
+      - .srv
+    networks:
+      - public
+    tty: true
+
+#  mongo:
+#    image: "mongo:latest"
+#    container_name: sb-mongo
+#    restart: always
+#    ports:
+#      - 27017:27017
+#    env_file:
+#      - server/.env
+#    networks:
+#      - public
+#    tty: true
+#
+#  rabbitmq:
+#    image: "rabbitmq:latest"
+#    container_name: sb-rabbitmq
+#    restart: always
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
+#    env_file:
+#      - server/.env
+#    networks:
+#      - public
+#    tty: true
+#
+#  mailhog:
+#    image: "mailhog/mailhog"
+#    container_name: sb-mailhog
+#    restart: always
+#    driver: none
+#    ports:
+#      - 1025:1025
+#      - 8025:8025
+#    networks:
+#      - public
+#    tty: true
+
+networks:
+  public:
+volumes:
+  application:
