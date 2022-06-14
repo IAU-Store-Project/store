@@ -52,9 +52,8 @@ function App() {
 									<Route path="card" element={<p>card</p>}/>
 									<Route path="*" element={<NoMatch/>}/>
 								</Route>
-
-								<Route path="/checkout" element={<ProtectedRoute><CheckoutPage/></ProtectedRoute>}/>
-
+								<Route path="/checkout"
+											 element={<ProtectedRoute><CheckoutPage/></ProtectedRoute>}/>
 								<Route path="*" element={<NoMatch/>}/>
 							</Routes>
 						</GeneralLayout>
