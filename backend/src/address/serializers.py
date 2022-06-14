@@ -9,10 +9,25 @@ User = get_user_model()
 
 class AddressSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='address-crud')
+    country_name = serializers.SerializerMethodField()
+    state_name = serializers.SerializerMethodField()
+    city_name = serializers.SerializerMethodField()
+
+    def get_city_name(self, obj):
+        return obj.city.name
+
+    def get_state_name(self, obj):
+        return obj.state.name
+
+    def get_country_name(self, obj):
+        return obj.country.name
 
     class Meta:
         model = Address
-        fields = ('pk', 'title', 'customer', 'url', 'created', 'city', 'state', 'country', 'updated')
+        fields = (
+            'pk', 'title', 'customer', 'address', 'city', 'city_name', 'state', 'state_name',
+            'country', 'country_name', 'url', 'created', 'updated'
+        )
         read_only_fields = ('customer', 'created', 'updated')
 
 
