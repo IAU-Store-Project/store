@@ -23,11 +23,6 @@ const UserMenu = () => {
 					</Link>
 				</li>
 				<li className="list-group-item">
-					<Link to="/user/card" className="text-decoration-none">
-						Billings
-					</Link>
-				</li>
-				<li className="list-group-item">
 					<Link to="/" onClick={signOut}
 								className="text-decoration-none text-danger"
 								style={{ cursor: "pointer" }}>
