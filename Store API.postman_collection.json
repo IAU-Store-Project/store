@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "02373756-a609-4629-a912-cdaf8455abd1",
+		"name": "Store API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5122272"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const resp = pm.response.json()",
+									"pm.collectionVariables.set(\"access\", resp.access)",
+									"pm.collectionVariables.set(\"refresh\", resp.refresh)",
+									"",
+									"pm.expect(resp.access).to.be.a(\"string\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"toor@localhost\",\n    \"password\": \"toortoor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/token/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const resp = pm.response.json()",
+									"pm.collectionVariables.set(\"token\", resp.token)",
+									"",
+									"pm.expect(resp.token).to.be.a(\"string\");",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"email@maildrop.cc\",\n    \"password\": \"toortoor\",\n    \"password2\": \"toortoor\",\n    \"first_name\": \"fisrt_name\",\n    \"last_name\": \"last_name\",\n    \"phone\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/auth/me",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"toor@localhost\",\n    \"first_name\": \"first\",\n    \"last_name\": \"last\",\n    \"phone\": \"9905000000001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/auth/me/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"auth",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "brands",
+			"item": [
+				{
+					"name": "brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/brands",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "brands/[:pk]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/brands/2/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"brands",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "categories",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categories/[:pk]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/categories/21/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"categories",
+								"21",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/products",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products/[:pk]",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/products/1/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "addresses",
+			"item": [
+				{
+					"name": "addresses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/addresses/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Home\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/addresses/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses/[:pk]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/addresses/17",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses/[:pk]",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Home 65\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/addresses/6",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addresses/[:pk]",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Home 654\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/addresses/6",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "countries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/addresses/countries",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": ":int/states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/addresses/228/states",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								"228",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": ":int/cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/addresses/4279/cities",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"addresses",
+								"4279",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "checkout",
+			"item": [
+				{
+					"name": "checkout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/checkout/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"checkout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": 1,\n        \"qty\": 10\n    },\n    {\n        \"id\": 1,\n        \"qty\": 20\n    },\n    {\n        \"id\": 1,\n        \"qty\": 30\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/checkout/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"checkout",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/orders/",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "edddcc4758a21178e867f1b430009eba607982ca",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		},
+		{
+			"key": "access",
+			"value": ""
+		},
+		{
+			"key": "refresh",
+			"value": ""
+		}
+	]
+}
