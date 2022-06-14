@@ -11,10 +11,10 @@ const AddressCard = ({ address }) => {
 							{address.title}
 						</h5>
 						<h6 className="card-subtitle mb-2 text-muted">
-							Turkey / Istanbul / Center
+							{address.country_name} / {address.state_name} / {address.city_name}
 						</h6>
 						<p className="card-text">
-							{address.title}
+							{address.address}
 						</p>
 						<Link to={`/user/address/${address.pk}/edit`}
 									className="card-link btn btn-light">Edit</Link>
