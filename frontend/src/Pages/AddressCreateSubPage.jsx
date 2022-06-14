@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import API from "../api";
@@ -12,29 +12,8 @@ const AddressCreateSubPage = () => {
 		state: null,
 		city: null,
 	});
-	const [countries, setCountries] = useState(null);
 	const navigate = useNavigate();
 	const { token } = useAuth();
-
-	useEffect(() => {
-
-		const getCountries = async () => {
-			try {
-				let response = await API.get(`addresses/countries`, {
-					headers: {
-						"Authorization": `Bearer ${token}`,
-						"Content-Type": "application/json",
-					},
-				});
-				setCountries(response.data);
-			} catch (err) {
-				console.log(err)
-			}
-		};
-
-		getCountries();
-
-	}, [token])
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -57,8 +36,6 @@ const AddressCreateSubPage = () => {
 		createAddress();
 	};
 
-
-
 	const handleChange = e => {
 		const target = e.target;
 		const value = target.value;
@@ -72,7 +49,6 @@ const AddressCreateSubPage = () => {
 	return (
 			<React.Fragment>
 				<AddressForm address={address}
-										 countries={countries}
 										 handleSubmit={handleSubmit}
 										 handleChange={handleChange}/>
 			</React.Fragment>
