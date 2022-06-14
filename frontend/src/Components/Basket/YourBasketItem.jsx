@@ -14,7 +14,7 @@ const YourBasketItem = ({ basket }) => {
 						</small>
 					</div>
 					<span className="text-muted">
-						$ {basket?.total}
+						${basket?.total}
 					</span>
 				</li>
 			</React.Fragment>
