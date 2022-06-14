@@ -27,13 +27,13 @@ const YourBasket = ({ baskets }) => {
 							<h6 className="my-0">Promo code</h6>
 							<small>-</small>
 						</div>
-						<span className="text-success">−$0</span>
+						<span className="text-success">$0</span>
 					</li>
 					<li key={`a-1`}
 							className="list-group-item d-flex justify-content-between">
 						<span>Total (USD)</span>
 						<strong>
-							$&nbsp;{baskets[0]?.basket?.total}
+							${baskets[0]?.basket?.total}
 						</strong>
 					</li>
 				</ul>
