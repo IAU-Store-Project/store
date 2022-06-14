@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import YourBasket from "../Basket/YourBasket";
+import AddressSelection from "./AddressSelection";
 
 const CheckoutForm = ({ baskets }) => {
 	return (
@@ -11,6 +12,14 @@ const CheckoutForm = ({ baskets }) => {
 							<YourBasket baskets={baskets} />
 						</div>
 						<div className="col-md-7 col-lg-8">
+
+
+							<AddressSelection />
+
+							<hr />
+							<hr />
+							<hr />
+
 							<h4 className="mb-3">Billing address</h4>
 							<form className="needs-validation" noValidate="">
 								<div className="row g-3">
