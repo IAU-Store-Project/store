@@ -1,13 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import API from "../../../api";
+import { useAuth } from "../../../Services/auth";
+import CitySelectBox from "../../Address/CitySelectBox";
+import StateSelectBox from "../../Address/StateSelectBox";
+import CountrySelectBox from "../../Address/CountrySelectBox";
+
 const AddressForm = ({
 	address,
-	countries,
 	handleSubmit,
 	handleChange
 }) => {
+	const [countries, setCountries] = useState(null);
+	const [states, setStates] = useState(null);
+	const [cities, setCities] = useState(null);
+	const { token } = useAuth();
+
+	const getCountries = async () => {
+		try {
+			let response = await API.get(`addresses/countries`, {
+				headers: {
+					"Authorization": `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			});
+			setCountries(response.data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const getStates = async (country_id) => {
+		try {
+			let response = await API.get(`/addresses/${country_id}/states/`, {
+				headers: {
+					"Authorization": `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			});
+			setStates(response.data);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const getCities = async (state_id) => {
+		try {
+			let response = await API.get(`/addresses/${state_id}/cities/`, {
+				headers: {
+					"Authorization": `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+			});
+			setCities(response.data);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	useEffect(() => {
+		getCountries();
+
+		if (address.country && address.country != null && address.country != "undefined") {
+			getStates(address.country);
+		}
+
+		if (address.state && address.state != null && address.state != "undefined") {
+			getCities(address.state);
+		}
+	}, [address])
+
 	return (
 			<React.Fragment>
 				<form onSubmit={handleSubmit}>
@@ -34,21 +98,10 @@ const AddressForm = ({
 								<label htmlFor="city" className="form-label">
 									Country
 								</label>
-								<select name="country"
-												id="country"
-												className="form-select"
-												value={address.country}
-												onChange={handleChange}
-												required={true}>
-									<option key={`cs-0`}></option>
-									{countries && countries?.map(country => (
-											<option
-													key={`cs-${country.id}`}
-													value={`${country.id}`}>
-												{country.name}
-											</option>
-									))}
-								</select>
+								<CountrySelectBox
+										address={address}
+										handleChange={handleChange}
+										countries={countries}/>
 							</div>
 						</div>
 						<div className="col-4">
@@ -56,17 +109,10 @@ const AddressForm = ({
 								<label htmlFor="state" className="form-label">
 									State
 								</label>
-								<select name="state"
-												id="state"
-												className="form-select"
-												value={address.state}
-												onChange={handleChange}
-												required={true}>
-									<option></option>
-									<option value="06">Ankara</option>
-									<option value="16">Bursa</option>
-									<option value="34">Istanbul</option>
-								</select>
+								<StateSelectBox
+										address={address}
+										handleChange={handleChange}
+										states={states}/>
 							</div>
 						</div>
 						<div className="col-4">
@@ -74,16 +120,10 @@ const AddressForm = ({
 								<label htmlFor="city" className="form-label">
 									City
 								</label>
-								<select name="city"
-												id="city"
-												className="form-select"
-												placeholder="First Name"
-												value={address.city}
-												onChange={handleChange}
-												required={true}>
-									<option></option>
-									<option value="1">Merkez</option>
-								</select>
+								<CitySelectBox
+										address={address}
+										handleChange={handleChange}
+										cities={cities}/>
 							</div>
 						</div>
 						<div className="col-12">
@@ -97,8 +137,9 @@ const AddressForm = ({
 													rows="3"
 													className="form-control"
 													onChange={handleChange}
-													required={true}
-								>{address.address}</textarea>
+													required={true}>
+									{address.address}
+								</textarea>
 							</div>
 						</div>
 					</div>
