@@ -1,6 +1,6 @@
 from django.contrib import admin
 from base.admin import BaseAdmin
-from product.models import Product, ProductCategory
+from product.models import Product
 
 
 @admin.action(description='Duplicate')
@@ -23,4 +23,3 @@ class ProductAdmin(BaseAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductCategory)

@@ -24,6 +24,7 @@ class Product(BaseModel):
         related_name="product_brand",
         null=True
     )
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField('Product', max_length=160)
     sku = models.CharField('SKU', max_length=12)
     price = models.DecimalField("Price", max_length=12, max_digits=12, decimal_places=4)
@@ -36,17 +37,6 @@ class Product(BaseModel):
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        return reverse('product-detail', kwargs={'pk': self.pk})
-
-
-class ProductCategory(BaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='categories')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "{0} - {1}".format(self.product.title, self.category.name)
 
     def get_absolute_url(self):
         return reverse('product-detail', kwargs={'pk': self.pk})

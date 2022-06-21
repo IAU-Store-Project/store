@@ -1,5 +1,5 @@
 from django.contrib import admin
-from product.models import Product, ProductCategory, Brand
+from product.models import Product, Brand
 
 
 class BaseAdmin(admin.ModelAdmin):

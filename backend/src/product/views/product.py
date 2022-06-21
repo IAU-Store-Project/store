@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from product.models import Product, ProductCategory
+from product.models import Product
 from django.conf import settings
 from base.permissions import GeneralPermission
 

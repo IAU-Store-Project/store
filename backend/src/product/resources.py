@@ -19,9 +19,9 @@ class ProductListAPIView(ListAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
-    filter_backends = [SearchFilter, OrderingFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     search_fields = ['title', 'brand']
-    ordering_fields = ['pk', 'title', 'brand']
+    ordering_fields = ['pk', 'title', 'brand', 'category']
     pagination_class = StandardResultsSetPagination
 
 

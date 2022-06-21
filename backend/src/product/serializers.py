@@ -4,27 +4,10 @@ from rest_framework import serializers
 from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
 from product.documents import ProductDocument
-from product.models import Product, ProductCategory
+from product.models import Product
 
 DEFAULT_CURRENCY = getattr(settings, 'DEFAULT_CURRENCY', None)
 DEFAULT_CURRENCY_PREFIX = getattr(settings, 'DEFAULT_CURRENCY_PREFIX', None)
-
-
-class ProductCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProductCategory
-        fields = '__all__'
-
-
-class ProductCategoryListingSerializer(serializers.ModelSerializer):
-    category_name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = ProductCategory
-        fields = ('category_id', 'category_name')
-
-    def get_category_name(self, obj):
-        return obj.category.name
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -33,16 +16,12 @@ class ProductSerializer(serializers.ModelSerializer):
     price = serializers.DecimalField(max_digits=18, decimal_places=2)
     currency = serializers.SerializerMethodField()
     currency_prefix = serializers.SerializerMethodField()
-    categories = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = '__all__'
         read_only_fields = ['currency']
         depth = 1
-
-    def get_categories(self, obj):
-        return ProductCategoryListingSerializer(obj.categories.all(), many=True).data
 
     def get_slug(self, obj):
         title = slugify(obj.title)
