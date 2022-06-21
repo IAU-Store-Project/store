@@ -1,9 +1,19 @@
 import environ
 from datetime import timedelta
 from django.contrib.messages import constants as messages
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 env = environ.Env(
     DEBUG=(bool, False)
+)
+sentry_sdk.init(
+    dsn=env('SENTRY_DSN'),
+    integrations=[
+        DjangoIntegration(),
+    ],
+    traces_sample_rate=1.0,
+    send_default_pii=True
 )
 
 MESSAGE_TAGS = {
