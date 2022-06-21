@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.views import View
 from django.http import HttpResponse
 
+from app.tasks import telegram_sender
 from product.models import Product
 from django.conf import settings
 
@@ -15,6 +16,8 @@ User = get_user_model()
 @login_required
 def home(request):
     session_key = request.COOKIES[settings.SESSION_COOKIE_NAME]
+
+    telegram_sender.delay(text="Naber")
 
     accounts_count = User.objects.filter(
         is_staff=False,
