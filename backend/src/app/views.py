@@ -17,7 +17,7 @@ User = get_user_model()
 def home(request):
     session_key = request.COOKIES[settings.SESSION_COOKIE_NAME]
 
-    telegram_sender.delay(text="Naber")
+    telegram_sender.delay(text="Yeni bir sipariş var!")
 
     accounts_count = User.objects.filter(
         is_staff=False,
