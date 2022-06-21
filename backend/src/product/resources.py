@@ -1,6 +1,7 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_elasticsearch_dsl_drf.constants import SUGGESTER_COMPLETION
 from django_elasticsearch_dsl_drf.filter_backends import (
@@ -23,6 +24,7 @@ class ProductListAPIView(ListAPIView):
     search_fields = ['title', 'brand']
     ordering_fields = ['pk', 'title', 'brand', 'category']
     pagination_class = StandardResultsSetPagination
+    filterset_fields = ['category', 'brand']
 
 
 class ProductRetrieveAPIView(RetrieveAPIView):
