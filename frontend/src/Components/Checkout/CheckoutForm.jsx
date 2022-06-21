@@ -47,12 +47,21 @@ const CheckoutForm = ({ baskets }) => {
 			} else {
 				// The card action has been handled
 				// The PaymentIntent can be confirmed again on the server
-				const serverResponse = await fetch("/pay", {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ payment_intent_id: paymentIntent.id }),
+
+				// const serverResponse = await fetch("/pay", {
+				// 	method: "POST",
+				// 	headers: { "Content-Type": "application/json" },
+				// 	body: JSON.stringify({ payment_intent_id: paymentIntent.id }),
+				// });
+
+				const serverResponse = await API.post(`/pay/`, { payment_intent_id: paymentIntent.id }, {
+					headers: {
+						"Authorization": `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
 				});
-				handleServerResponse(await serverResponse.json());
+
+				handleServerResponse(serverResponse);
 			}
 		} else {
 			// Show success message
@@ -64,14 +73,23 @@ const CheckoutForm = ({ baskets }) => {
 			// Show error in payment form
 		} else {
 			// Otherwise send paymentMethod.id to your server (see Step 4)
-			const res = await fetch("/pay", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					payment_method_id: result.paymentMethod.id,
-				}),
+			// const res = await fetch("/pay", {
+			// 	method: "POST",
+			// 	headers: { "Content-Type": "application/json" },
+			// 	body: JSON.stringify({
+			// 		payment_method_id: result.paymentMethod.id,
+			// 	}),
+			// });
+
+
+			const paymentResponse = await API.post(`/pay/`, {
+				payment_method_id: result.paymentMethod.id,
+			}, {
+				headers: {
+					"Authorization": `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
 			});
-			const paymentResponse = await res.json();
 
 			// Handle server response (see Step 4)
 			handleServerResponse(paymentResponse);
