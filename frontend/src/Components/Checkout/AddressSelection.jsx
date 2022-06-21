@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-const AddressSelection = props => {
+const AddressSelection = () => {
 	return (
 			<React.Fragment>
 				AddressSelection
@@ -9,8 +9,8 @@ const AddressSelection = props => {
 	);
 };
 
-AddressSelection.propTypes = {
-
-};
+// AddressSelection.propTypes = {
+//
+// };
 
 export default AddressSelection;

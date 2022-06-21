@@ -7,6 +7,10 @@ import YourBasketItem from "./YourBasketItem";
 const YourBasket = ({ baskets }) => {
 	const { itemCount } = useCart();
 
+	React.useEffect(() => {
+
+	}, [])
+
 	return (
 			<React.Fragment>
 				<h4 className="d-flex justify-content-between align-items-center mb-3">

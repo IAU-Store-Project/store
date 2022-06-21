@@ -16,8 +16,8 @@ const ProductDetail = ({ product }) => {
 						</div>
 						<div className="col-6">
 							<h3 className="mb-4 display-4">{product.title}</h3>
-							<h4 className="mb-2">
-								{product.price} &nbsp; {product.currency}
+							<h4 className="mb-2 display-6">
+								$ {product.price}
 							</h4>
 							<div className="row mt-3">
 								<div className="col-12">
@@ -55,12 +55,12 @@ const ProductDetail = ({ product }) => {
 											<th>{product.sku}</th>
 										</tr>
 										<tr>
-											<td>Brand</td>
-											<th>{product.brand.name}</th>
+											<td>Category</td>
+											<th>{product?.categories[0]?.category_name}</th>
 										</tr>
 										<tr>
-											<td>Description</td>
-											<th>{product.description}</th>
+											<td>Brand</td>
+											<th>{product.brand.name}</th>
 										</tr>
 										</tbody>
 									</table>

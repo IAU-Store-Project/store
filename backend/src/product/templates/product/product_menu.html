@@ -26,4 +26,10 @@
         <i class="fas fa-plus-circle"></i>&nbsp;Create
     </a>
 
+    {% if product_id %}
+        <a href="{% url 'product-categories' product_id %}" class="btn btn-default">
+            <i class="fas fa-circle-notch"></i>&nbsp;Categories
+        </a>
+    {% endif %}
+
 </div>

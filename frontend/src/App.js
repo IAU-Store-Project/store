@@ -23,11 +23,16 @@ import AddressUpdateSubPage from "./Pages/AddressUpdateSubPage";
 import CartContextProvider from "./Context/Cart";
 import CheckoutPage from "./Pages/CheckoutPage";
 
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51L2DcCIPO0PKIySxmnZlKH1ZW8XbXxiQBEpMcYwPerpEVgitpvu7WLMuR9o3Gpdv09Q2jmh4PnFJUWCfICbnQDoD00c4p00bZm');
+
 function App() {
 	return (
 			<HashRouter>
 				<CartContextProvider>
 					<AuthProvider>
+						<Elements stripe={stripePromise}>
 						<GeneralLayout>
 							<Routes>
 								<Route path="/" element={<HomePage/>}/>
@@ -57,6 +62,7 @@ function App() {
 								<Route path="*" element={<NoMatch/>}/>
 							</Routes>
 						</GeneralLayout>
+						</Elements>
 					</AuthProvider>
 				</CartContextProvider>
 			</HashRouter>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'categories/category_menu.html' %}
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">List</h3>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Category Name</th>
+                    <th>Category Slug</th>
+                    <th>Category Status</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.category.id }}</td>
+                        <td>{{ category.category.name }}</td>
+                        <td>{{ category.category.slug }}</td>
+                        <td>
+                            <a href="{% url 'category-status' category.category.id 'list' %}">
+                                {% if category.category.is_active %}
+                                    <span class="btn btn-xs btn-success">Active</span>
+                                {% else %}
+                                    <span class="btn btn-xs btn-danger">Passive</span>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'product-category-delete' category.product.id category.id %}" class="btn btn-xs btn-default" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </a>&nbsp;
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <p class="text-bold p-2">Category not found</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

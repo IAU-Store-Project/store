@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'categories/category_menu.html' with category=category %}
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Detail</h3>
+        </div>
+       <div class="card-body p-0">
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <td>{{ category.id }}</td>
+                </tr>
+                <tr>
+                    <th>Brand</th>
+                    <td>{{ category.name }}</td>
+                </tr>
+                <tr>
+                    <th>Created</th>
+                    <td>{{ category.created }}</td>
+                </tr>
+                <tr>
+                    <th>Updated</th>
+                    <td>{{ category.updated }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        {% if category.is_active %}
+                            <span class="btn btn-xs btn-success">Active</span>
+                        {% else %}
+                            <span class="btn btn-xs btn-danger">Pasive</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}

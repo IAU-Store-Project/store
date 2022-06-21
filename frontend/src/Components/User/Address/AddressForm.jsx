@@ -18,59 +18,60 @@ const AddressForm = ({
 	const [cities, setCities] = useState(null);
 	const { token } = useAuth();
 
-	const getCountries = async () => {
-		try {
-			let response = await API.get(`addresses/countries`, {
-				headers: {
-					"Authorization": `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			});
-			setCountries(response.data);
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-	const getStates = async (country_id) => {
-		try {
-			let response = await API.get(`/addresses/${country_id}/states/`, {
-				headers: {
-					"Authorization": `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			});
-			setStates(response.data);
-		} catch (err) {
-			console.error(err);
-		}
-	};
-
-	const getCities = async (state_id) => {
-		try {
-			let response = await API.get(`/addresses/${state_id}/cities/`, {
-				headers: {
-					"Authorization": `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-			});
-			setCities(response.data);
-		} catch (err) {
-			console.error(err);
-		}
-	};
-
 	useEffect(() => {
+
+		const getCountries = async () => {
+			try {
+				let response = await API.get(`addresses/countries`, {
+					headers: {
+						"Authorization": `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+				});
+				setCountries(response.data);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+
+		const getStates = async (country_id) => {
+			try {
+				let response = await API.get(`/addresses/${country_id}/states/`, {
+					headers: {
+						"Authorization": `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+				});
+				setStates(response.data);
+			} catch (err) {
+				console.error(err);
+			}
+		};
+
+		const getCities = async (state_id) => {
+			try {
+				let response = await API.get(`/addresses/${state_id}/cities/`, {
+					headers: {
+						"Authorization": `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+				});
+				setCities(response.data);
+			} catch (err) {
+				console.error(err);
+			}
+		};
+
 		getCountries();
 
-		if (address.country && address.country != null && address.country != "undefined") {
+		if (address.country && address.country !== null && address.country !== "undefined") {
 			getStates(address.country);
 		}
 
-		if (address.state && address.state != null && address.state != "undefined") {
+		if (address.state && address.state !== null && address.state !== "undefined") {
 			getCities(address.state);
 		}
-	}, [address])
+	}, [address, token])
 
 	return (
 			<React.Fragment>

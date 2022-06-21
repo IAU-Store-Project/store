@@ -32,10 +32,10 @@ const BasketList = () => {
 					</tr>
 					</tbody>
 				</table>
-				<button className="btn btn-danger" onClick={() => clearCart()}>Clean
+				<button className="btn btn-light" onClick={() => clearCart()}>Delete All
 				</button>
 				&nbsp;
-				<Link className="btn btn-primary" to="/checkout">Checkout &raquo;</Link>
+				<Link className="btn btn-dark" to="/checkout">Checkout &raquo;</Link>
 			</React.Fragment>
 	);
 };

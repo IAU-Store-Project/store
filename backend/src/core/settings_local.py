@@ -40,6 +40,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DEFAULT_CURRENCY = env('DEFAULT_CURRENCY')
+DEFAULT_CURRENCY_PREFIX = '$' #env('DEFAULT_CURRENCY_PREFIX')
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5000",
@@ -107,3 +108,12 @@ IMAGE_UPLOAD_DIR = 'uploads/images'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #STATIC_URL = '/django_static/'
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'http://localhost:55001'
+    },
+}
+ELASTICSEARCH_INDEX_NAMES = {
+    'product.product': 'products',
+}

@@ -42,8 +42,11 @@ class Product(BaseModel):
 
 
 class ProductCategory(BaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='categories')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{0} - {1}".format(self.product.title, self.category.name)
+
+    def get_absolute_url(self):
+        return reverse('product-detail', kwargs={'pk': self.pk})
