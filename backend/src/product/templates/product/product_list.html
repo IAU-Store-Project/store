@@ -16,8 +16,10 @@
                 <thead>
                 <tr>
                     <th style="width: 10px">#</th>
+                    <th>Product</th>
                     <th>Brand</th>
-                    <th>Quantity</th>
+                    <th>Category</th>
+                    <th>Stock</th>
                     <th>Unit</th>
                     <th>Price</th>
                     <th>SKU</th>
@@ -33,6 +35,8 @@
                                 {{ product.title }}
                             </a>
                         </td>
+                        <td>{{ product.brand.name }}</td>
+                        <td>{{ product.category.name }}</td>
                         <td>{{ product.stock }}</td>
                         <td>{{ product.unit }}</td>
                         <td>{{ product.price }} &nbsp; {{ default_currency }}</td>
