@@ -20,10 +20,14 @@ from django.conf.urls.static import static
 from django.views.generic import RedirectView
 
 
-
 admin.site.site_header = 'Store Administrator'
 admin.site.index_title = 'Management'
 admin.site.site_title = 'Store Management'
+
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 
 urlpatterns = [
     path('', RedirectView.as_view(pattern_name='home')),
@@ -33,5 +37,5 @@ urlpatterns = [
     path('app/', include('app.urls')),
     path('app/product/', include('product.urls')),
     path('app/customers/', include('customer.urls')),
-
+    path('sentry-debug/', trigger_error),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
