@@ -12,13 +12,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Shipping',
+            name='Payment',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='Created Time')),
                 ('updated', models.DateTimeField(auto_now=True, verbose_name='Updated Time')),
-                ('name', models.CharField(max_length=100)),
-                ('address', models.CharField(max_length=100)),
+                ('success', models.BooleanField(default=False)),
+                ('total', models.FloatField(default=0)),
+                ('currency', models.CharField(default='USD', max_length=5)),
+                ('payid', models.CharField(max_length=100, null=True)),
+                ('extras', models.JSONField(default=dict)),
             ],
             options={
                 'abstract': False,
