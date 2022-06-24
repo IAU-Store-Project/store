@@ -47,8 +47,8 @@
         </a>
     </li>
 
-    <li class="nav-item {% if '/orders' in request.path %}menu-open{% endif %}">
-        <a href="{% url 'customers' %}" class="nav-link {% if '/orders' in request.path %}active{% endif %}">
+    <li class="nav-item {% if '/order' in request.path %}menu-open{% endif %}">
+        <a href="{% url 'order-list' %}" class="nav-link {% if '/order' in request.path %}active{% endif %}">
             <i class="nav-icon fas fa-shopping-basket"></i>
             <p>Orders</p>
         </a>
