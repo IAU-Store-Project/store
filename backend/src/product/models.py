@@ -9,11 +9,11 @@ from base.models import BaseModel
 
 IMAGE_UPLOAD_DIR = getattr(settings, 'IMAGE_UPLOAD_DIR', 'uploads/images')
 
-UNITS_CHOICES = {
+UNITS_CHOICES = [
     (ProductUnits.QTY, ProductUnits.QTY),
     (ProductUnits.ITEMS, ProductUnits.ITEMS),
     (ProductUnits.KG, ProductUnits.KG)
-}
+]
 
 
 class Product(BaseModel):
