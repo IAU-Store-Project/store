@@ -23,17 +23,17 @@ const BasketCard = ({ product }) => {
 				<td>{cart.quantity}</td>
 				<td>
 					<button onClick={() => increase(cart)}
-									className="btn btn-sm btn-primary text-bolder">
+									className="btn btn-sm btn-dark text-bolder">
 						<i className="fas fa-plus-circle"></i>
 					</button>
 					&nbsp;
 					<button onClick={() => decrease(cart)}
-									className="btn btn-sm btn-danger text-bolder">
+									className="btn btn-sm btn-secondary text-bolder">
 						<i className="fas fa-minus-circle"></i>
 					</button>
 					&nbsp;
 					<button onClick={() => removeProduct(cart)}
-									className="btn btn-sm btn-danger text-bolder">
+									className="btn btn-sm btn-default text-bolder">
 						<i className="fas fa-trash"></i>
 					</button>
 				</td>

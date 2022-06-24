@@ -16,11 +16,12 @@ const ProductCard = ({ product }) => {
 							<Link to={`/product/${product.slug}/${product.id}`}
 										className="text-decoration-none">
 								<h6 className="card-title text-center m-3 text-dark"
-										style={{minHeight: '57px'}}>
+										style={{minHeight: '32px'}}>
+									{/*57*/}
 									{product.title}
 								</h6>
 							</Link>
-							<p className="card-text">{product.description} Lorem ipsum sit dolar amet</p>
+							<p className="card-text text-muted text-center">{product.category?.name}</p>
 							<div className="d-grid gap-2">
 								<ProductCartBtn product={{ ...product }} />
 							</div>

@@ -10,13 +10,13 @@ const CategoryPage = () => {
 	const [products, setProducts] = useState(false);
 
 	useEffect(() => {
-		API.get(`products`)
+		API.get(`products?category=${params.category_id}`)
 				.then(response => {
 					if (response.status !== 200) return;
 					const products = response.data;
 					setProducts(products.results);
 				});
-	}, []);
+	}, [params]);
 
 	return (
 			<React.Fragment>

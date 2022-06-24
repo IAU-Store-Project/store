@@ -25,6 +25,8 @@ import CheckoutPage from "./Pages/CheckoutPage";
 
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import OrderPage from "./Pages/OrderPage";
+import HelpPage from "./Pages/HelpPage";
 const stripePromise = loadStripe('pk_test_51L2DcCIPO0PKIySxmnZlKH1ZW8XbXxiQBEpMcYwPerpEVgitpvu7WLMuR9o3Gpdv09Q2jmh4PnFJUWCfICbnQDoD00c4p00bZm');
 
 function App() {
@@ -39,15 +41,17 @@ function App() {
 								<Route path="/signin" element={<SigninPage/>}/>
 								<Route path="/signup" element={<SignupPage/>}/>
 								<Route path="/basket" element={<BasketPage/>}/>
-								<Route path="/category/:category_name"
+								<Route path="/category/:category_id/:category_name"
 											 element={<CategoryPage/>}/>
 								<Route path="/product/:pname/:pid" element={<ProductPage/>}
 											 exact={true}/>
 								<Route path="/about" element={<AboutPage/>}/>
+								<Route path="/help" element={<HelpPage/>}/>
 								<Route path="user" element={
 									<ProtectedRoute><AccountPage/></ProtectedRoute>}>
 									<Route index element={<ProfileSubPage/>}/>
 									<Route path="profile" element={<ProfileSubPage/>}/>
+									<Route path="orders" element={<OrderPage/>}/>
 									<Route path="address" element={<AddressSubPage/>}/>
 									<Route path="address/new" element={<AddressCreateSubPage/>}/>
 									<Route path="address/:address_id/edit"

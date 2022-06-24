@@ -59,7 +59,7 @@ const CategoryNavbar = () => {
               {categories &&
                 categories.map((category, index) => (
                   <li key={`cat-${category.id}`} className="nav-item">
-                    <Link className="nav-link" to={`/category/${category.slug}/`}>
+                    <Link className="nav-link" to={`/category/${category.id}/${category.slug}/`}>
                       {category.name}
                     </Link>
                   </li>

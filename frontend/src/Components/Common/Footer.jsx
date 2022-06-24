@@ -25,13 +25,13 @@ const Footer = () => {
 									</li>
 									<li className="mb-1">
 										<Link className="link-secondary text-decoration-none"
-													to="/orders">
+													to="/user/orders">
 											Orders
 										</Link>
 									</li>
 									<li className="mb-1">
 										<Link className="link-secondary text-decoration-none"
-													to="/about">
+													to="/help">
 											Help
 										</Link>
 									</li>
@@ -47,10 +47,10 @@ const Footer = () => {
 								<h5>Developers</h5>
 								<ul className="list-unstyled text-small">
 									<li className="mb-1">
-										<Link className="link-secondary text-decoration-none"
-													to={"/developers"}>
+										<a className="link-secondary text-decoration-none"
+													href="/graphql" target="_blank">
 											GraphQL API
-										</Link>
+										</a>
 									</li>
 								</ul>
 							</div>

@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+
 import API from "../api";
+import OrderCard from "../Components/Order/OrderCard";
 import { useAuth } from "../Services/auth";
 import Spinner from "../Components/Common/Spinner";
-import { useCart } from "../Hooks/useCart";
-import CheckoutForm from "../Components/Checkout/CheckoutForm";
 
-const CheckoutPage = () => {
-	const [basket, setBasket] = useState();
+const OrderPage = () => {
 	const [spin, setSpin] = useState(true);
+	const [orders, setOrders] = useState(true);
 	const { token } = useAuth();
-	const { cartItems } = useCart();
 
 	useEffect(() => {
 		let isMounted = true;
 		let controller = new AbortController();
 
-		const updateBasket = async () => {
+		const getOrders = async () => {
 			try {
-				const response = await API.post(`checkout/`, cartItems, {
+				const response = await API.get(`orders`, {
 					headers: {
 						"Authorization": `Bearer ${token}`,
 						"Accept": "application/json",
 					},
 					signal: controller.signal,
-					timeout: 10000,
 				});
-				isMounted && setBasket(response.data);
+				isMounted && setOrders(response.data.results);
 			} catch (err) {
 				console.log(err);
 			} finally {
@@ -33,23 +31,23 @@ const CheckoutPage = () => {
 			}
 		};
 
-		updateBasket();
+		getOrders();
 
 		return () => {
 			isMounted = false;
 			controller.abort();
 		};
-	}, []);
+	}, [token]);
 
 	if (spin) {
 		return <Spinner/>;
 	}
 
 	return (
-			<React.Fragment>
-				<CheckoutForm baskets={basket}/>
-			</React.Fragment>
+			<Fragment>
+				{orders && orders.map(order => <OrderCard key={`ord-${order.id}`} order={order}/>)}
+			</Fragment>
 	);
 };
 
-export default CheckoutPage;
+export default OrderPage;

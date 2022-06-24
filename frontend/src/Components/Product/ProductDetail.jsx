@@ -32,10 +32,6 @@ const ProductDetail = ({ product }) => {
 											required={true}>
 										<option>Quantity</option>
 										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
 									</select>
 								</div>
 								<div className="col-6 d-grid">
@@ -56,7 +52,7 @@ const ProductDetail = ({ product }) => {
 										</tr>
 										<tr>
 											<td>Category</td>
-											<th>{product?.categories[0]?.category_name}</th>
+											<th>{product?.category?.name}</th>
 										</tr>
 										<tr>
 											<td>Brand</td>

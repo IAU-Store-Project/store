@@ -11,11 +11,11 @@ const NAVBAR_LINKS = [
   },
   {
     title: "Orders",
-    href: "/orders",
+    href: "/user/orders",
   },
   {
     title: "Help",
-    href: "/",
+    href: "/help",
   },
 ];
 
