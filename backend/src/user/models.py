@@ -29,6 +29,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_absolute_url(self):
         return "/user/%i/" % (self.pk)
 
+    def fullname(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
     class Meta:
         db_table = 'auth_user'
         verbose_name = 'User'
