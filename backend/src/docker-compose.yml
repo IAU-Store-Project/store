@@ -2,48 +2,69 @@ version: "3.8"
 
 services:
 
+  db:
+    image: "postgres:latest"
+    container_name: store-db
+    restart: always
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - postgresdata:/var/lib/postgresql/data/
+    networks:
+      - public
+    tty: true
+
   metabase-secrets:
     image: metabase/metabase:latest
-    container_name: sb-metabase
+    container_name: store-metabase
     hostname: metabase-secrets
     ports:
-      - 3000:3000
+      - 3005:3000
     env_file:
-      - .srv
+      - .env
     networks:
       - public
     links:
       - db
     tty: true
+    volumes:
+      - ./db.sqlite3:/db.sqlite3
 
-  db:
-    image: "postgres:latest"
-    container_name: sb-db
+  redis:
+    image: "redis:latest"
+    container_name: store-redis
+    hostname: redis
     restart: always
     ports:
-      - 25060:5432
+      - 6379:6379
     env_file:
-      - .srv
+      - .env
     networks:
       - public
     tty: true
 
-  redis:
-    image: "redis:latest"
-    container_name: sb-redis
-    hostname: redis
+  es:
+    image: elasticsearch:8.2.0
+    hostname: elasticsearch
+    container_name: store-es
     restart: always
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
     ports:
-      - 25061:6379
-    env_file:
-      - .srv
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
     networks:
       - public
     tty: true
 
 #  mongo:
 #    image: "mongo:latest"
-#    container_name: sb-mongo
+#    container_name: store-mongo
 #    restart: always
 #    ports:
 #      - 27017:27017
@@ -55,7 +76,7 @@ services:
 #
 #  rabbitmq:
 #    image: "rabbitmq:latest"
-#    container_name: sb-rabbitmq
+#    container_name: store-rabbitmq
 #    restart: always
 #    ports:
 #      - "5672:5672"
@@ -68,7 +89,7 @@ services:
 #
 #  mailhog:
 #    image: "mailhog/mailhog"
-#    container_name: sb-mailhog
+#    container_name: store-mailhog
 #    restart: always
 #    driver: none
 #    ports:
@@ -80,5 +101,7 @@ services:
 
 networks:
   public:
+
 volumes:
-  application:
+  postgresdata:
+  esdata:

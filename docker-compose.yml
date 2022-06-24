@@ -1,0 +1,140 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    env_file:
+      - ./backend/src/.env
+    networks:
+      - live
+
+  redis:
+    image: 'redis:alpine'
+    hostname: redis
+    networks:
+      - live
+
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    hostname: app
+    stdin_open: true
+    expose:
+      - '8000'
+    volumes:
+      - ./backend/src/.env:/app/.env
+    #command: bash -c "python manage.py migrate && gunicorn core.wsgi:application -b 0.0.0.0:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - redis
+      - db
+    networks:
+      - live
+
+  frontend:
+    image: node:17
+    command: sh entrypoint.sh
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend/:/app/frontend
+    restart: on-failure
+    networks:
+      - live
+
+  nginx:
+    image: nginx
+    hostname: nginx
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./devops/nginx:/etc/nginx/conf.d
+      - ./backend/src:/app
+      - ./frontend/:/app/frontend
+    depends_on:
+      - app
+      - frontend
+    networks:
+      - live
+
+  celery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: "celery -A core worker -l info"
+    volumes:
+      - ./backend/src/.env:/app/.env
+    depends_on:
+      - app
+      - redis
+      - db
+    restart: on-failure
+    networks:
+      - live
+
+  flower:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '5555:5555'
+    command: "celery -A core flower --address=0.0.0.0" # --broker="${CELERY_BROKER}"
+    volumes:
+      - ./backend/src/.env:/app/.env
+    depends_on:
+      - celery
+    restart: on-failure
+    networks:
+      - live
+
+
+  es:
+    image: 'elasticsearch:alpine'
+    hostname: elasticsearch
+    container_name: store-es
+    restart: always
+    networks:
+      - live
+    tty: true
+
+#
+#  mailhog:
+#    image: "mailhog/mailhog"
+#    container_name: store-mailhog
+#    restart: always
+#    driver: none
+#    ports:
+#      - 1025:1025
+#      - 8025:8025
+#    networks:
+#      - public
+#    tty: true
+
+
+
+  # metabase-secrets:
+  #   image: metabase/metabase:latest
+  #   container_name: store-metabase
+  #   hostname: metabase-secrets
+  #   ports:
+  #     - 3005:3000
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - public
+  #   links:
+  #     - db
+  #   tty: true
+  #   volumes:
+  #     - ./db.sqlite3:/db.sqlite3
+
+
+volumes:
+  db-data:
+
+networks:
+  live:
