@@ -2,12 +2,19 @@ import graphene
 from graphene_django import DjangoObjectType
 
 from category.models import Category
+from brand.models import Brand
 from product.models import Product
 
 
 class CategoryType(DjangoObjectType):
     class Meta:
         model = Category
+        fields = '__all__'
+
+
+class BrandType(DjangoObjectType):
+    class Meta:
+        model = Brand
         fields = '__all__'
 
 

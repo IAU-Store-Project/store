@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            {% include 'order/order_menu.html' with order=order %}
+            <div class="clearfix">&nbsp;</div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Order</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width: 200px;">ID</th>
+                            <td>{{ order.pk }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>{{ order.status_text }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Amount</th>
+                            <td>{{ order.payment.currency }}&nbsp;{{ order.amount }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Payment</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width: 200px;">ID</th>
+                            <td>{{ order.payment.pk }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Amount</th>
+                            <td>{{ order.payment.currency }}&nbsp;{{ order.total }}</td>
+                        </tr>
+                        <tr>
+                            <th>Success</th>
+                            <td>
+                                {% if payment.success == True %}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Customer</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width: 200px;">ID</th>
+                            <td>{{ order.payment.pk }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fullname</th>
+                            <td>{{ order.customer.fullname }}</td>
+                        </tr>
+                        <tr>
+                            <th>E-mail</th>
+                            <td>{{ order.customer.email }}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+{% endblock %}

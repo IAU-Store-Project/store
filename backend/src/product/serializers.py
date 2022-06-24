@@ -38,5 +38,4 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductDocumentSerializer(DocumentSerializer):
     class Meta:
         document = ProductDocument
-
         fields = '__all__'

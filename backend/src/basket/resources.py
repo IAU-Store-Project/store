@@ -18,7 +18,7 @@ class CheckoutAPIView(APIView):
 
     def get(self, request):
         customer = request.user
-        basket = Basket.objects.filter(customer=customer, ordered=False).first()
+        basket = Basket.objects.filter(customer_id=customer.pk, ordered=False).first()
 
         queryset = BasketItems.objects.filter(customer=customer, basket=basket)
         serializer = BasketItemsSerializer(queryset, many=True, context={'request': request})

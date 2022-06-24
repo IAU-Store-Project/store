@@ -1,0 +1,13 @@
+<div class="btn-group">
+
+    {% if order %}
+        <a href="{% url 'order-detail' order.id %}" class="btn btn-default">
+            <i class="fas fa-?"></i>&nbsp;Refresh
+        </a>
+    {% endif %}
+
+    <a href="{% url 'order-list' %}" class="btn btn-default">
+        <i class="fas fa-list"></i>&nbsp;List
+    </a>
+
+</div>

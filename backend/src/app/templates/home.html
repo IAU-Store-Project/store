@@ -7,26 +7,26 @@
 
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>0</h3>
-                        <p>New Orders</p>
+                        <h3>{{ orders_count|default_if_none:0 }}</h3>
+                        <p>Orders</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{% url 'order-list' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
 
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>0<sup style="font-size: 20px">%</sup></h3>
-                        <p>Bounce Rate</p>
+                        <h3>{{ baskets_count|default_if_none:0 }}</h3>
+                        <p>Baskets</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer">&nbsp;</a>
                 </div>
             </div>
 

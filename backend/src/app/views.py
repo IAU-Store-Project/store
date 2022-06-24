@@ -6,7 +6,8 @@ from django.contrib import messages
 from django.views import View
 from django.http import HttpResponse
 
-from app.tasks import telegram_sender
+from basket.models import Basket
+from order.models import Order
 from product.models import Product
 from django.conf import settings
 
@@ -17,12 +18,18 @@ User = get_user_model()
 def home(request):
     session_key = request.COOKIES[settings.SESSION_COOKIE_NAME]
 
-    telegram_sender.delay(text="Yeni bir sipariş var!")
-
     accounts_count = User.objects.filter(
         is_staff=False,
         is_superuser=False,
         is_active=True
+    ).count()
+
+    orders_count = Order.objects.filter(
+        is_paid=True
+    ).count()
+
+    baskets_count = Basket.objects.filter(
+        ordered=False
     ).count()
 
     products_count = Product.objects.filter().count()
@@ -31,6 +38,8 @@ def home(request):
         "title": "Dashboard",
         "accounts_count": accounts_count,
         "products_count": products_count,
+        "baskets_count": baskets_count,
+        "orders_count": orders_count,
     }
 
     return render(request, 'home.html', context=context)

@@ -14,6 +14,9 @@ class Basket(BaseModel):
     ordered = models.BooleanField(default=False)
     total = models.FloatField(default=0)
 
+    def __str__(self):
+        return "Basket #{0}".format(self.pk)
+
 
 class BasketItems(BaseModel):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='basket_items')

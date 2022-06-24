@@ -14,7 +14,7 @@ def duplicate(modeladmin, request, queryset):
 
 
 class ProductAdmin(BaseAdmin):
-    list_display = ('pk', 'title', 'sku', 'price', 'stock', 'created', 'updated')
+    list_display = ('pk', 'title', 'sku', 'price', 'category', 'stock', 'created', 'updated')
     list_filter = ('created', 'updated', 'brand')
     list_display_links = ('pk', 'title', 'sku')
     search_fields = ('title', 'brand', 'sku', 'price')
