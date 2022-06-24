@@ -122,15 +122,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'http://localhost:55001'
+        'hosts': env('ELASTICSEARCH_URL')
     },
 }
 ELASTICSEARCH_INDEX_NAMES = {
     'product.product': 'products',
 }
 
-CELERY_BROKER_URL = env('CELERY_BROKER_URL')
-CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_URL = env("CELERY_BROKER")
+CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TIMEZONE = "UTC"
 CELERY_TASK_TRACK_STARTED = True
