@@ -70,7 +70,6 @@ def signin(request):
             return redirect('signin')
 
     context = {"title": "signin"}
-    print("post", request.POST)
     return render(request, 'signin.html', context=context)
 
 
