@@ -30,8 +30,6 @@ class Order(BaseModel):
             '5': 'COMPLETED',
         }
 
-        print(status.get(self.status))
-
         return status.get(self.status)
 
 
