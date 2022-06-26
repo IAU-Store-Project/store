@@ -8,7 +8,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     env_file:
-      - ./backend/src/.env
+      - ./backend/src/.env.docker
     networks:
       - live
 
@@ -27,11 +27,12 @@ services:
     expose:
       - '8000'
     volumes:
-      - ./backend/src/.env:/app/.env
-    #command: bash -c "python manage.py migrate && gunicorn core.wsgi:application -b 0.0.0.0:8000"
-    command: python manage.py runserver 0.0.0.0:8000
+      - ./backend/src/.env.docker:/app/.env
+    command: bash -c "python manage.py migrate && gunicorn core.wsgi:application -b 0.0.0.0:8000"
+    #command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - redis
+      - es
       - db
     networks:
       - live
@@ -67,7 +68,7 @@ services:
       dockerfile: Dockerfile
     command: "celery -A core worker -l info"
     volumes:
-      - ./backend/src/.env:/app/.env
+      - ./backend/src/.env.docker:/app/.env
     depends_on:
       - app
       - redis
@@ -84,19 +85,26 @@ services:
       - '5555:5555'
     command: "celery -A core flower --address=0.0.0.0" # --broker="${CELERY_BROKER}"
     volumes:
-      - ./backend/src/.env:/app/.env
+      - ./backend/src/.env.docker:/app/.env
     depends_on:
       - celery
     restart: on-failure
     networks:
       - live
 
-
   es:
-    image: 'elasticsearch:alpine'
+    image: elasticsearch:8.2.0
     hostname: elasticsearch
     container_name: store-es
     restart: always
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
     networks:
       - live
     tty: true
@@ -114,27 +122,25 @@ services:
 #      - public
 #    tty: true
 
-
-
-  # metabase-secrets:
-  #   image: metabase/metabase:latest
-  #   container_name: store-metabase
-  #   hostname: metabase-secrets
-  #   ports:
-  #     - 3005:3000
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - public
-  #   links:
-  #     - db
-  #   tty: true
-  #   volumes:
-  #     - ./db.sqlite3:/db.sqlite3
-
+  meta:
+    image: metabase/metabase:latest
+    container_name: store-meta
+    hostname: meta
+    ports:
+      - 3005:3000
+    env_file:
+      - ./backend/src/.env.docker
+    networks:
+      - live
+    links:
+      - db
+    tty: true
+    volumes:
+      - ./backend/src/db.sqlite3:/db.sqlite3
 
 volumes:
   db-data:
+  esdata:
 
 networks:
   live:

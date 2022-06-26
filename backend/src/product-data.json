@@ -1,0 +1,66 @@
+[
+  {
+    "model": "product.product",
+    "pk": 1,
+    "fields": {
+      "created": "2022-05-23T19:12:11.083Z",
+      "updated": "2022-06-23T21:30:44.588Z",
+      "brand": 1,
+      "category": 1,
+      "title": "Dell XPS8950ADLS7900",
+      "sku": "10001",
+      "price": "3200.0000",
+      "stock": "1000.0000",
+      "unit": "QTY",
+      "img": "uploads/images/1.png"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 430,
+    "fields": {
+      "created": "2022-05-27T20:35:29.059Z",
+      "updated": "2022-06-23T21:30:34.534Z",
+      "brand": 1,
+      "category": 1,
+      "title": "Go Gamer TSG434ST",
+      "sku": "10001",
+      "price": "2099.0000",
+      "stock": "1000.0000",
+      "unit": "QTY",
+      "img": "uploads/images/2.png"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 431,
+    "fields": {
+      "created": "2022-05-27T20:35:33.999Z",
+      "updated": "2022-06-23T21:42:24.096Z",
+      "brand": 3,
+      "category": 2,
+      "title": "iPhone 13 Pro",
+      "sku": "10001",
+      "price": "999.0000",
+      "stock": "1000.0000",
+      "unit": "QTY",
+      "img": "uploads/images/3.png"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 434,
+    "fields": {
+      "created": "2022-05-27T20:35:34.014Z",
+      "updated": "2022-05-27T20:35:34.014Z",
+      "brand": 1,
+      "category": 1,
+      "title": "Algoritma Ders Notları",
+      "sku": "10001",
+      "price": "12.9900",
+      "stock": "1000.0000",
+      "unit": "QTY",
+      "img": "uploads/images/cover.png"
+    }
+  }
+]

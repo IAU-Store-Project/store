@@ -15,5 +15,6 @@ RUN pip install -U pip && pip install -r requirements.txt
 COPY ./patch/utils.py /usr/local/lib/python3.9/site-packages/graphene_django/utils/utils.py
 
 RUN python manage.py collectstatic --noinput
+#RUN python manage.py search_index --rebuild
 
 # CMD gunicorn core.wsgi:application -b 0.0.0.0:8000
